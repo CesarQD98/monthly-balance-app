@@ -18,6 +18,14 @@ export default function DesktopMenubar() {
           </Link>
         </MenubarContent>
       </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Mi perfil</MenubarTrigger>
+        <MenubarContent align='start'>
+          <Link passHref href='/api/auth/signout'>
+            <MenubarItem>Cerrar sesión</MenubarItem>
+          </Link>
+        </MenubarContent>
+      </MenubarMenu>
     </Menubar>
   )
 }
