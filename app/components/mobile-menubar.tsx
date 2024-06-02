@@ -1,4 +1,6 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import {
   Sheet,
   SheetClose,
@@ -7,9 +9,19 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { LogOut, Menu, ReceiptText } from 'lucide-react'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
+import { options } from '../api/auth/[...nextauth]/options'
+import { redirect } from 'next/navigation'
 
-export default function MobileMenubar() {
+export default async function MobileMenubar() {
+  const session = await getServerSession(options)
+
+  if (!session) {
+    redirect('/api/auth/signin?callbackUrl=/server')
+  }
+
+  const { user } = session
   return (
     <Sheet>
       <SheetTrigger asChild className='md:hidden'>
@@ -37,6 +49,24 @@ export default function MobileMenubar() {
               >
                 <LogOut className='size-4' />
                 Cerrar sesión
+              </Link>
+            </SheetClose>
+            <Separator />
+            <SheetClose asChild>
+              <Link
+                href='/mi-perfil'
+                className='flex gap-2 items-center text-xs'
+              >
+                <Avatar className='size-8'>
+                  <AvatarImage
+                    src={user?.image ?? undefined}
+                    alt={`Foto de perfil`}
+                  />
+                  <AvatarFallback>
+                    {user?.name ? user?.name[0] : '?'}
+                  </AvatarFallback>
+                </Avatar>
+                Mi perfil
               </Link>
             </SheetClose>
           </div>

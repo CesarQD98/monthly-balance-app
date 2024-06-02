@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang='es'>
       <body className={`${lato.className} antialiased`}>
-        <header className='flex justify-between md:justify-start md:gap-8 items-center md:items-baseline px-4 py-2 md:px-8 md:py-4 border-b-2 border-stone-500/30'>
+        <header className='flex w-full justify-between md:justify-start md:gap-8 items-center md:items-baseline px-4 py-2 md:px-8 md:py-4 border-b-2 border-stone-500/30'>
           <Link href='/'>
             <h1 className='font-bold text-2xl'>Balance App</h1>
           </Link>
