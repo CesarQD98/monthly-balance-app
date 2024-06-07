@@ -1,8 +1,9 @@
 'use client'
 import { ResponsiveBar } from '@nivo/bar'
+import { ContributionGraphData } from '../lib/definitions'
 
 type BarChartProps = {
-  data: { [key: string]: string | number }[]
+  data: ContributionGraphData
   keys: string[]
   indexBy: string
 }

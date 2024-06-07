@@ -1,6 +1,13 @@
 import { sql } from '@vercel/postgres'
-import { Contribution } from './definitions'
-import { preprocessData, transformContributionsData } from './helpers'
+import {
+  Contribution,
+  SalaryProps,
+  TotalExpensesProps,
+  TotalSalariesProps,
+  TotalUserContributionsProps,
+  UserBalanceProps,
+} from './definitions'
+import { preprocessData } from './helpers'
 
 export async function fetchUserEmails() {
   try {
@@ -51,28 +58,6 @@ export async function fetchMainPageGraph(
     console.error('Database error:', error)
     throw new Error('Failed to fetch all contributions per current month')
   }
-}
-
-type SalaryProps = {
-  sueldo_monto: number
-}
-
-type TotalSalariesProps = {
-  total_sueldo_month: number
-}
-
-type TotalExpensesProps = {
-  total_expenses_month: number
-}
-
-type TotalUserContributionsProps = {
-  total_user_contributions: number
-}
-
-type UserBalanceProps = {
-  userEmail: string
-  startDate?: string
-  endDate?: string
 }
 
 export async function fetchUserBalance({
