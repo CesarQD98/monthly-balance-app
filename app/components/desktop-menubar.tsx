@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { options } from '../api/auth/[...nextauth]/options'
 import { redirect } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { LogOut } from 'lucide-react'
 
 export default async function DesktopMenubar() {
   const session = await getServerSession(options)
@@ -32,14 +33,6 @@ export default async function DesktopMenubar() {
             </Link>
           </MenubarContent>
         </MenubarMenu>
-        <MenubarMenu>
-          <MenubarTrigger>Mi perfil</MenubarTrigger>
-          <MenubarContent align='start'>
-            <Link passHref href='/api/auth/signout'>
-              <MenubarItem>Cerrar sesión</MenubarItem>
-            </Link>
-          </MenubarContent>
-        </MenubarMenu>
       </Menubar>
       <Menubar className='border-0'>
         <MenubarMenu>
@@ -58,6 +51,12 @@ export default async function DesktopMenubar() {
           <MenubarContent align='end'>
             <Link passHref href='/mi-perfil'>
               <MenubarItem>Mi perfil</MenubarItem>
+            </Link>
+            <Link href='/api/auth/signout' passHref>
+              <MenubarItem className='flex gap-2 items-center text-xs text-destructive'>
+                <LogOut className='size-4' />
+                Cerrar sesión
+              </MenubarItem>
             </Link>
           </MenubarContent>
         </MenubarMenu>

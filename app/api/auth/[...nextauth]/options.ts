@@ -2,6 +2,7 @@ import type { NextAuthOptions } from 'next-auth'
 import Github from 'next-auth/providers/github'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
+import { fetchUserEmails } from '@/app/lib/data'
 
 export const options: NextAuthOptions = {
   providers: [
@@ -42,4 +43,11 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user }) {
+      const emails = await fetchUserEmails()
+      if (user.email && emails.includes(user.email)) return true
+      return false
+    },
+  },
 }

@@ -4,6 +4,7 @@ import './globals.css'
 import Link from 'next/link'
 import MobileMenubar from './components/mobile-menubar'
 import DesktopMenubar from './components/desktop-menubar'
+import { Activity } from 'lucide-react'
 
 const lato = Lato({
   subsets: ['latin'],
@@ -21,10 +22,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='es'>
+    <html lang='es' className='dark'>
       <body className={`${lato.className} antialiased`}>
-        <header className='flex w-full justify-between md:justify-start md:gap-8 items-center md:items-baseline px-4 py-2 md:px-8 md:py-4 border-b-2 border-stone-500/30'>
-          <Link href='/'>
+        <header className='flex w-full justify-between md:justify-start md:gap-8 items-center px-4 py-2 md:px-8 md:py-4 border-b-2 border-stone-500/30'>
+          <Link href='/' className='flex gap-2 items-center md:items-stretch'>
+            <Activity className='self-center' />
             <h1 className='font-bold text-2xl'>Balance App</h1>
           </Link>
           <MobileMenubar />
